@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Khóa đào tạo nội bộ Viettel: Hướng dẫn tạo Slide bằng AI cơ bản và nâng cao dành cho CBCNV VTNet. Đăng ký ngay!">
+<title>Đào tạo AI Viettel | Hướng dẫn tạo Slide bằng AI – VTNet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #EE0033;
+    --red-dark: #C5002A;
+    --red-deeper: #9A001F;
+    --red-glow: rgba(238,0,51,0.12);
+    --red-mist: rgba(238,0,51,0.06);
+    --black: #0C0C0C;
+    --dark: #1A1A1A;
+    --gray-900: #2A2A2A;
+    --gray-700: #4A4A4A;
+    --gray-500: #767676;
+    --gray-300: #C8C8C8;
+    --gray-100: #F2F2F2;
+    --gray-50: #F9F9F9;
+    --white: #FFFFFF;
+    --accent: #FF6B35;
+    --font-head: 'Barlow Condensed', 'Barlow', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--gray-50); }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+  /* ── UTILITY ── */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+  .tag { display: inline-flex; align-items: center; gap: 6px; background: var(--red-mist); border: 1px solid rgba(238,0,51,0.2); color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: var(--white); font-family: var(--font-body); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; padding: 14px 28px; border: 2px solid var(--red); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+  .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); transform: translateY(-1px); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--white); font-family: var(--font-body); font-weight: 700; font-size: 15px; padding: 13px 28px; border: 2px solid rgba(255,255,255,0.5); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+  .section-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .section-title { font-family: var(--font-head); font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.05; color: var(--dark); letter-spacing: -0.01em; }
+  .section-sub { font-size: 17px; color: var(--gray-700); line-height: 1.7; margin-top: 16px; max-width: 560px; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; transition: all 0.3s; }
+  nav.scrolled { background: rgba(255,255,255,0.94); backdrop-filter: blur(20px); box-shadow: 0 1px 0 var(--gray-300); }
+  nav .inner { max-width: 1120px; margin: 0 auto; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark { width: 36px; height: 36px; background: var(--red); border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-mark svg { width: 22px; height: 22px; fill: white; }
+  .nav-logo-text { font-family: var(--font-head); font-weight: 900; font-size: 20px; color: var(--dark); letter-spacing: 0.02em; }
+  .nav-logo-text span { color: var(--red); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-size: 14px; font-weight: 600; color: var(--gray-700); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--dark); transition: all 0.3s; }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--white); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: var(--font-head); font-size: 32px; font-weight: 900; color: var(--dark); text-decoration: none; letter-spacing: -0.01em; }
+  .mobile-menu a:hover { color: var(--red); }
+
+  /* ── HERO ── */
+  #hero { min-height: 100vh; background: var(--black); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding-top: 68px; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--gray-900) 1px, transparent 1px), linear-gradient(90deg, var(--gray-900) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.4; }
+  .hero-accent { position: absolute; top: -120px; right: -120px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(238,0,51,0.2) 0%, transparent 70%); pointer-events: none; }
+  .hero-accent2 { position: absolute; bottom: -80px; left: -60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(238,0,51,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { position: relative; z-index: 2; padding: 80px 24px; max-width: 1120px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(238,0,51,0.15); border: 1px solid rgba(238,0,51,0.3); color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 24px; }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--red); border-radius: 50%; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+  .hero-h1 { font-family: var(--font-head); font-size: clamp(40px, 7vw, 80px); font-weight: 900; line-height: 0.95; color: var(--white); letter-spacing: -0.02em; margin-bottom: 28px; }
+  .hero-h1 .red { color: var(--red); }
+  .hero-h1 .line2 { display: block; }
+  .hero-sub { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 40px; max-width: 520px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+  .hero-stats { display: flex; gap: 32px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .hero-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 900; color: var(--white); line-height: 1; }
+  .hero-stat-lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+  .hero-visual { position: relative; }
+  .hero-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; backdrop-filter: blur(10px); }
+  .hero-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .hero-card-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .hero-card-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); }
+  .ai-chat { display: flex; flex-direction: column; gap: 12px; }
+  .ai-bubble { padding: 12px 16px; border-radius: 8px; font-size: 14px; line-height: 1.5; max-width: 90%; }
+  .ai-bubble.user { background: rgba(238,0,51,0.15); border: 1px solid rgba(238,0,51,0.25); color: rgba(255,255,255,0.85); align-self: flex-end; border-radius: 8px 8px 2px 8px; }
+  .ai-bubble.ai { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); align-self: flex-start; border-radius: 8px 8px 8px 2px; }
+  .ai-typing { display: flex; gap: 4px; align-items: center; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px 8px 8px 2px; align-self: flex-start; width: fit-content; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); animation: bounce 1.2s infinite; }
+  .dot:nth-child(2){animation-delay:0.2s}.dot:nth-child(3){animation-delay:0.4s}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+  .hero-badge { position: absolute; top: -16px; right: -16px; background: var(--red); color: white; font-family: var(--font-head); font-size: 13px; font-weight: 900; padding: 8px 14px; border-radius: 4px; letter-spacing: 0.05em; transform: rotate(2deg); }
+  .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; animation: float 2s ease-in-out infinite; }
+  @keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+
+  /* ── BENEFITS ── */
+  #benefits { padding: 100px 24px; background: var(--white); }
+  .benefits-inner { max-width: 1120px; margin: 0 auto; }
+  .benefits-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; gap: 32px; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--gray-100); border: 2px solid var(--gray-100); border-radius: 8px; overflow: hidden; }
+  .benefit-card { background: var(--white); padding: 48px 36px; position: relative; transition: background 0.3s; }
+  .benefit-card:hover { background: var(--red-mist); }
+  .benefit-num { font-family: var(--font-head); font-size: 72px; font-weight: 900; color: var(--gray-100); line-height: 1; margin-bottom: 24px; transition: color 0.3s; }
+  .benefit-card:hover .benefit-num { color: rgba(238,0,51,0.1); }
+  .benefit-icon { width: 48px; height: 48px; background: var(--red-mist); border: 1px solid rgba(238,0,51,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .benefit-icon svg { width: 24px; height: 24px; stroke: var(--red); fill: none; stroke-width: 1.8; }
+  .benefit-title { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 12px; line-height: 1.2; }
+  .benefit-text { font-size: 15px; color: var(--gray-700); line-height: 1.7; }
+  .benefit-arrow { position: absolute; bottom: 36px; right: 36px; width: 32px; height: 32px; border: 1px solid var(--gray-300); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .benefit-card:hover .benefit-arrow { background: var(--red); border-color: var(--red); }
+  .benefit-arrow svg { width: 14px; height: 14px; stroke: var(--gray-500); transition: stroke 0.3s; }
+  .benefit-card:hover .benefit-arrow svg { stroke: white; }
+
+  /* ── COURSE CONTENT ── */
+  #content { padding: 100px 24px; background: var(--gray-50); }
+  .content-inner { max-width: 1120px; margin: 0 auto; }
+  .content-layout { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: start; margin-top: 60px; }
+  .content-tabs { display: flex; flex-direction: column; gap: 8px; }
+  .tab-btn { display: flex; align-items: center; gap: 14px; padding: 20px 24px; background: var(--white); border: 1px solid var(--gray-100); border-radius: 4px; cursor: pointer; font-family: var(--font-body); text-align: left; transition: all 0.25s; }
+  .tab-btn.active { background: var(--dark); border-color: var(--dark); }
+  .tab-btn:hover:not(.active) { border-color: var(--gray-300); background: var(--white); transform: translateX(4px); }
+  .tab-num { font-family: var(--font-head); font-size: 28px; font-weight: 900; color: var(--gray-300); transition: color 0.25s; min-width: 36px; }
+  .tab-btn.active .tab-num { color: var(--red); }
+  .tab-info { flex: 1; }
+  .tab-level { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 2px; transition: color 0.25s; }
+  .tab-btn.active .tab-level { color: rgba(255,255,255,0.5); }
+  .tab-name { font-size: 15px; font-weight: 700; color: var(--dark); transition: color 0.25s; }
+  .tab-btn.active .tab-name { color: var(--white); }
+  .tab-arrow { font-size: 20px; color: var(--gray-300); transition: all 0.25s; }
+  .tab-btn.active .tab-arrow { color: var(--red); transform: translateX(4px); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .panel-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 8px; padding: 40px; }
+  .panel-badge { display: inline-block; padding: 4px 12px; border-radius: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+  .badge-basic { background: rgba(0,120,212,0.08); color: #0078D4; }
+  .badge-advanced { background: rgba(238,0,51,0.08); color: var(--red); }
+  .panel-title { font-family: var(--font-head); font-size: 28px; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+  .panel-desc { font-size: 15px; color: var(--gray-700); margin-bottom: 28px; line-height: 1.7; }
+  .panel-list { display: flex; flex-direction: column; gap: 14px; }
+  .panel-item { display: flex; align-items: flex-start; gap: 12px; }
+  .panel-check { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; background: var(--red-mist); border: 1px solid rgba(238,0,51,0.2); display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .panel-check svg { width: 10px; height: 10px; stroke: var(--red); stroke-width: 2.5; fill: none; }
+  .panel-item-text { font-size: 15px; color: var(--dark); line-height: 1.5; }
+  .panel-item-text strong { font-weight: 700; }
+  .panel-tools { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--gray-100); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .panel-tools-lbl { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); }
+  .tool-chip { display: inline-flex; align-items: center; gap: 5px; background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 100px; padding: 5px 12px; font-size: 13px; font-weight: 600; color: var(--gray-700); }
+
+  /* ── LOGISTICS ── */
+  #logistics { padding: 100px 24px; background: var(--white); }
+  .logistics-inner { max-width: 1120px; margin: 0 auto; }
+  .logistics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+  .info-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 8px; padding: 36px 28px; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+  .info-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  .info-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+  .info-card-icon { width: 52px; height: 52px; border-radius: 8px; background: var(--red-mist); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .info-card-icon svg { width: 26px; height: 26px; stroke: var(--red); fill: none; stroke-width: 1.8; }
+  .info-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
+  .info-card-value { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--dark); line-height: 1.2; margin-bottom: 8px; }
+  .info-card-note { font-size: 14px; color: var(--gray-700); line-height: 1.5; }
+  .instructor-card { background: var(--dark); border-radius: 8px; padding: 36px 28px; color: white; }
+  .instructor-card::before { background: var(--red); }
+  .instructor-avatar { width: 60px; height: 60px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 22px; font-weight: 900; color: white; margin-bottom: 16px; }
+  .instructor-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  .instructor-name { font-family: var(--font-head); font-size: 24px; font-weight: 900; color: white; margin-bottom: 8px; }
+  .instructor-role { font-size: 14px; color: rgba(255,255,255,0.55); }
+
+  /* ── TRUST ── */
+  #trust { padding: 100px 24px; background: var(--dark); overflow: hidden; }
+  .trust-inner { max-width: 1120px; margin: 0 auto; }
+  .trust-header { text-align: center; margin-bottom: 64px; }
+  .trust-header .section-title { color: var(--white); }
+  .trust-header .section-label { color: rgba(238,0,51,0.8); }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; margin-bottom: 64px; }
+  .stat-box { background: rgba(255,255,255,0.02); padding: 40px 24px; text-align: center; }
+  .stat-box-num { font-family: var(--font-head); font-size: 56px; font-weight: 900; color: var(--white); line-height: 1; }
+  .stat-box-num span { color: var(--red); }
+  .stat-box-lbl { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 8px; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testimonial { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 28px; }
+  .testimonial-quote { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-quote::before { content: '"'; font-family: var(--font-head); font-size: 40px; color: var(--red); line-height: 0.5; display: block; margin-bottom: 12px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(238,0,51,0.2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--red); }
+  .author-info-name { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8); }
+  .author-info-role { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ── FINAL CTA ── */
+  #cta { padding: 100px 24px; background: var(--red); overflow: hidden; position: relative; }
+  .cta-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 40px 40px; }
+  .cta-accent { position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 70%); }
+  .cta-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  .cta-deadline { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
+  .cta-deadline svg { width: 14px; height: 14px; stroke: white; fill: none; stroke-width: 2; }
+  .cta-h2 { font-family: var(--font-head); font-size: clamp(36px, 6vw, 68px); font-weight: 900; color: var(--white); line-height: 1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .cta-sub { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 40px; }
+  .cta-buttons { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--red); font-family: var(--font-body); font-weight: 800; font-size: 16px; padding: 16px 36px; border: 2px solid var(--white); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .btn-white:hover { background: var(--gray-50); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--black); padding: 48px 24px; }
+  .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-brand-mark { width: 28px; height: 28px; background: var(--red); border-radius: 2px; }
+  .footer-brand-name { font-family: var(--font-head); font-size: 16px; font-weight: 900; color: var(--white); }
+  .footer-contact { text-align: right; }
+  .footer-contact-name { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .footer-contact-detail { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+  .footer-contact a { color: rgba(238,0,51,0.8); text-decoration: none; }
+  .footer-contact a:hover { color: var(--red); }
+  .footer-copy { width: 100%; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta .btn-primary { display: none; }
+    .hamburger { display: flex; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-visual { display: none; }
+    .benefits-header { flex-direction: column; align-items: flex-start; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .content-layout { grid-template-columns: 1fr; }
+    .content-tabs { flex-direction: row; overflow-x: auto; }
+    .tab-btn { min-width: 200px; }
+    .logistics-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-contact { text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { gap: 20px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 22 22"><path d="M3 11L11 3L19 11L11 19L3 11Z" fill="white"/></svg>
+      </div>
+      <span class="nav-logo-text">VT<span>Net</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#benefits">Lợi ích</a>
+      <a href="#content">Nội dung</a>
+      <a href="#logistics">Thông tin</a>
+      <a href="#cta">Đăng ký</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#cta" class="btn-primary">Đăng ký ngay →</a>
+      <div class="hamburger" id="hamburger" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#benefits" class="mobile-link">Lợi ích</a>
+  <a href="#content" class="mobile-link">Nội dung</a>
+  <a href="#logistics" class="mobile-link">Thông tin</a>
+  <a href="#cta" class="mobile-link" style="color:var(--red)">Đăng ký ngay →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-accent2"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">Chương trình Đào tạo Nội bộ · CBCNV Viettel / VTNet</div>
+      <h1 class="hero-h1 reveal" style="transition-delay:0.1s">
+        HƯỚNG DẪN<br>
+        <span class="red">TẠO SLIDE</span><br>
+        <span class="line2">BẰNG AI</span>
+      </h1>
+      <p class="hero-sub reveal" style="transition-delay:0.2s">
+        Trang bị kỹ năng sử dụng công cụ AI để thiết kế slide chuyên nghiệp và tối ưu hiệu suất làm việc hàng ngày — từ cơ bản đến nâng cao.
+      </p>
+      <div class="hero-ctas reveal" style="transition-delay:0.3s">
+        <a href="#cta" class="btn-primary" style="font-size:16px;padding:16px 32px">Đăng ký tham gia ngay →</a>
+        <a href="#content" class="btn-outline">Xem nội dung</a>
+      </div>
+      <div class="hero-stats reveal" style="transition-delay:0.4s">
+        <div>
+          <div class="hero-stat-num">2</div>
+          <div class="hero-stat-lbl">Phần học<br>Cơ bản & Nâng cao</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3.5H</div>
+          <div class="hero-stat-lbl">Thời lượng<br>học tập</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">27/5</div>
+          <div class="hero-stat-lbl">Ngày khai<br>giảng</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual reveal" style="transition-delay:0.3s">
+      <div class="hero-badge">⚡ AI-POWERED</div>
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-dot" style="background:#ff5f57"></div>
+          <div class="hero-card-dot" style="background:#ffbd2e"></div>
+          <div class="hero-card-dot" style="background:#28c840"></div>
+          <span class="hero-card-title" style="margin-left:8px">Claude AI · Viettel Workspace</span>
+        </div>
+        <div class="ai-chat">
+          <div class="ai-bubble user">Tạo slide báo cáo Q2 cho Ban Lãnh đạo theo brand Viettel</div>
+          <div class="ai-bubble ai">Đã phân tích Brand Guidelines VTNet. Tôi sẽ tạo 10 slides với màu #EE0033, font FS Magistral, bố cục chuyên nghiệp...</div>
+          <div class="ai-bubble user">Thêm biểu đồ tăng trưởng thuê bao 5G vào slide 4</div>
+          <div class="ai-typing">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Cuộn xuống</span>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="benefits-inner">
+    <div class="benefits-header reveal">
+      <div>
+        <span class="section-label">Tại sao nên tham gia</span>
+        <h2 class="section-title">3 lý do không<br>thể bỏ qua</h2>
+      </div>
+      <p class="section-sub" style="margin-top:0">Khóa học được thiết kế đặc biệt cho CBCNV VTNet, tập trung vào ứng dụng thực tế ngay trong công việc.</p>
+    </div>
+    <div class="benefits-grid reveal" style="transition-delay:0.1s">
+      <div class="benefit-card">
+        <div class="benefit-num">01</div>
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="benefit-title">Hoàn thiện Khung năng lực & Nhận chứng nhận</h3>
+        <p class="benefit-text">Đáp ứng yêu cầu KNL nội bộ. Nhận chứng nhận hoàn thành khóa học có giá trị trong hồ sơ năng lực cá nhân tại Viettel.</p>
+        <div class="benefit-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">02</div>
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></svg>
+        </div>
+        <h3 class="benefit-title">Làm chủ bộ công cụ AI hàng đầu thế giới</h3>
+        <p class="benefit-text">Thực hành trực tiếp với Claude, Gemini, Canva AI và các công cụ tạo slide tự động — không cần nền tảng kỹ thuật.</p>
+        <div class="benefit-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">03</div>
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="benefit-title">Tối ưu hóa quy trình làm việc hàng ngày</h3>
+        <p class="benefit-text">Từ báo cáo lãnh đạo, công văn nội bộ đến landing page — tiết kiệm 70% thời gian thiết kế với AI.</p>
+        <div class="benefit-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE CONTENT -->
+<section id="content">
+  <div class="content-inner">
+    <div class="reveal">
+      <span class="section-label">Nội dung chương trình</span>
+      <h2 class="section-title">Lộ trình học<br>từng bước</h2>
+      <p class="section-sub">Từ cơ bản đến nâng cao — mỗi kỹ năng đều áp dụng được ngay trong công việc thực tế tại VTNet.</p>
+    </div>
+    <div class="content-layout reveal" style="transition-delay:0.1s">
+      <div class="content-tabs" id="tabs">
+        <button class="tab-btn active" data-tab="0">
+          <span class="tab-num">01</span>
+          <div class="tab-info">
+            <div class="tab-level">Phần 1</div>
+            <div class="tab-name">Kỹ năng Cơ bản</div>
+          </div>
+          <span class="tab-arrow">›</span>
+        </button>
+        <button class="tab-btn" data-tab="1">
+          <span class="tab-num">02</span>
+          <div class="tab-info">
+            <div class="tab-level">Phần 2</div>
+            <div class="tab-name">Kỹ năng Nâng cao</div>
+          </div>
+          <span class="tab-arrow">›</span>
+        </button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active panel-card" id="panel-0">
+          <span class="panel-badge badge-basic">CƠ BẢN</span>
+          <h3 class="panel-title">Tối ưu Slide & Nhận diện thương hiệu</h3>
+          <p class="panel-desc">Nắm vững nguyên tắc thiết kế slide chuyên nghiệp theo chuẩn Viettel, ứng dụng AI để tự động hóa quy trình soạn thảo tài liệu.</p>
+          <div class="panel-list">
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Cấu trúc tài liệu chuẩn Viettel</strong> — Quy tắc dàn trang, phân cấp thông tin, key message cho lãnh đạo</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Nhận diện thương hiệu Viettel</strong> — Màu sắc, font chữ, logo, bố cục đúng Brand Guidelines 2025</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Tối ưu slide bằng Prompt AI</strong> — Viết prompt hiệu quả để Claude/Gemini tự động tạo nội dung slide</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Thực hành tạo 10-slide báo cáo</strong> — Áp dụng ngay với nội dung công việc thực tế</span>
+            </div>
+          </div>
+          <div class="panel-tools">
+            <span class="panel-tools-lbl">Công cụ:</span>
+            <span class="tool-chip">Claude AI</span>
+            <span class="tool-chip">Gamma.app</span>
+            <span class="tool-chip">PowerPoint AI</span>
+            <span class="tool-chip">Canva</span>
+          </div>
+        </div>
+        <div class="tab-panel panel-card" id="panel-1">
+          <span class="panel-badge badge-advanced">NÂNG CAO</span>
+          <h3 class="panel-title">Claude chuyên sâu & Landing Page thực tế</h3>
+          <p class="panel-desc">Khai thác tối đa sức mạnh của Claude để tạo ra các sản phẩm truyền thông số chuyên nghiệp — vượt ra ngoài slide thông thường.</p>
+          <div class="panel-list">
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Kỹ thuật Prompt nâng cao</strong> — System prompt, context window, multi-turn conversation cho tài liệu phức tạp</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Thiết kế Landing Page thực tế</strong> — Từ brief đến sản phẩm hoàn chỉnh bằng Claude trong 60 phút</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Tự động hóa quy trình</strong> — Công văn, báo cáo định kỳ, infographic bằng AI không cần designer</span>
+            </div>
+            <div class="panel-item">
+              <div class="panel-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="panel-item-text"><strong>Capstone Project</strong> — Mỗi học viên tự tạo 1 sản phẩm hoàn chỉnh và nhận feedback trực tiếp</span>
+            </div>
+          </div>
+          <div class="panel-tools">
+            <span class="panel-tools-lbl">Công cụ:</span>
+            <span class="tool-chip">Claude Sonnet</span>
+            <span class="tool-chip">Gemini</span>
+            <span class="tool-chip">HTML/CSS</span>
+            <span class="tool-chip">Canva AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGISTICS -->
+<section id="logistics">
+  <div class="logistics-inner">
+    <div class="reveal">
+      <span class="section-label">Thông tin khóa học</span>
+      <h2 class="section-title">Thời gian, địa điểm<br>& Giảng viên</h2>
+    </div>
+    <div class="logistics-grid reveal" style="transition-delay:0.1s">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="info-card-label">Thời gian</div>
+        <div class="info-card-value">08:30 – 12:00</div>
+        <div class="info-card-note">Thứ Tư, ngày <strong>27/05/2026</strong><br>Thời lượng: 3.5 giờ học tập trung</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="info-card-label">Địa điểm</div>
+        <div class="info-card-value">Tầng G – Thái Bình</div>
+        <div class="info-card-note">Tòa nhà Thái Bình, Hà Nội<br>Kết hợp <strong>Online qua Zoom</strong></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="info-card-label">Yêu cầu tham dự</div>
+        <div class="info-card-value">Mang laptop</div>
+        <div class="info-card-note">Chuẩn bị sẵn tài khoản Claude AI, Google Gemini và email công ty</div>
+      </div>
+      <div class="info-card instructor-card">
+        <div class="instructor-avatar">TQT</div>
+        <div class="instructor-label">Giảng viên</div>
+        <div class="instructor-name">Đ/c Trần Quốc Tuấn</div>
+        <div class="instructor-role" style="margin-top:8px;line-height:1.6">Chuyên gia đào tạo AI ứng dụng<br>Tổng Công ty Mạng lưới Viettel (VTNet)</div>
+      </div>
+      <div class="info-card" style="grid-column:2 / span 2;background:var(--red-mist);border-color:rgba(238,0,51,0.15);">
+        <div class="info-card-icon" style="background:rgba(238,0,51,0.1)">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="info-card-label" style="color:var(--red)">Hình thức</div>
+        <div class="info-card-value">Trực tiếp + Hybrid</div>
+        <div class="info-card-note">Học viên có thể tham gia tại phòng học hoặc online qua Zoom. Link Zoom sẽ được gửi qua email sau khi đăng ký thành công.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="trust-inner">
+    <div class="trust-header reveal">
+      <span class="section-label">Con số ấn tượng</span>
+      <h2 class="section-title" style="color:white">AI đang thay đổi<br>cách chúng ta làm việc</h2>
+    </div>
+    <div class="stats-row reveal" style="transition-delay:0.1s">
+      <div class="stat-box">
+        <div class="stat-box-num">70<span>%</span></div>
+        <div class="stat-box-lbl">Thời gian tiết kiệm<br>khi dùng AI tạo slide</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num">10<span>×</span></div>
+        <div class="stat-box-lbl">Tốc độ soạn thảo<br>báo cáo với AI</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num">85<span>%</span></div>
+        <div class="stat-box-lbl">Doanh nghiệp đang<br>ứng dụng Generative AI</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num">2026</div>
+        <div class="stat-box-lbl">Năm AI trở thành<br>kỹ năng bắt buộc</div>
+      </div>
+    </div>
+    <div class="testimonials-grid reveal" style="transition-delay:0.2s">
+      <div class="testimonial">
+        <div class="testimonial-quote">Sau khóa học, tôi tạo được bộ slide báo cáo tháng chỉ trong 40 phút thay vì cả buổi sáng như trước. Claude hiểu đúng yêu cầu brand Viettel ngay lần đầu.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">HT</div>
+          <div>
+            <div class="author-info-name">Đ/c Hoàng Thị Thu</div>
+            <div class="author-info-role">Phòng Kinh doanh – VTNet</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">Khóa học thực chiến, không lý thuyết. Học xong là áp dụng được ngay. Đặc biệt phần Landing Page rất ấn tượng — tôi không ngờ Claude có thể làm được như vậy.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">MV</div>
+          <div>
+            <div class="author-info-name">Đ/c Minh Văn</div>
+            <div class="author-info-role">Phòng Kỹ thuật – TT KTTC</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">Giảng viên hướng dẫn rất chi tiết, kiên nhẫn. Đây là khóa đào tạo AI thực tế và hữu ích nhất tôi từng tham gia trong hệ thống Viettel.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">LN</div>
+          <div>
+            <div class="author-info-name">Đ/c Lan Nguyễn</div>
+            <div class="author-info-role">Phòng Nhân sự – VTNet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-accent"></div>
+  <div class="cta-inner reveal">
+    <div class="cta-deadline">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Hạn cuối đăng ký: <strong>20/05/2026</strong>
+    </div>
+    <h2 class="cta-h2">Sẵn sàng làm chủ AI<br>và bứt phá hiệu suất?</h2>
+    <p class="cta-sub">Cơ hội học miễn phí dành cho toàn thể CBCNV Viettel / VTNet.<br>Số lượng chỗ có hạn — đăng ký sớm để đảm bảo vị trí.</p>
+    <div class="cta-buttons">
+      <a href="https://forms.google.com" class="btn-white">Điền Form Đăng Ký Ngay →</a>
+      <a href="mailto:minhmn@viettel.com.vn" class="btn-outline">Liên hệ ban tổ chức</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-mark"></div>
+      <span class="footer-brand-name">VTNet Training</span>
+    </div>
+    <div class="footer-contact">
+      <div class="footer-contact-name">Đ/c Mai Ngọc Minh – Phòng Nhân sự</div>
+      <div class="footer-contact-detail">
+        ĐT: <a href="tel:0989208017">0989 208 017</a> · Email: <a href="mailto:minhmn@viettel.com.vn">minhmn@viettel.com.vn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Tổng Công ty Mạng lưới Viettel (VTNet) · Tài liệu nội bộ</div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + idx).classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Trigger visible for hero elements immediately
+setTimeout(() => {
+  document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+}, 100);
+</script>
+</body>
+</html>
