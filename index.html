@@ -77,7 +77,7 @@
   .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--gray-900) 1px, transparent 1px), linear-gradient(90deg, var(--gray-900) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.4; }
   .hero-accent { position: absolute; top: -120px; right: -120px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(238,0,51,0.2) 0%, transparent 70%); pointer-events: none; }
   .hero-accent2 { position: absolute; bottom: -80px; left: -60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(238,0,51,0.08) 0%, transparent 70%); pointer-events: none; }
-  .hero-content { position: relative; z-index: 2; padding: 80px 24px; max-width: 1120px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; }
+  .hero-content { position: relative; z-index: 2; padding: 80px 24px; max-width: 860px; margin: 0 auto; width: 100%; }
   .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(238,0,51,0.15); border: 1px solid rgba(238,0,51,0.3); color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 24px; }
   .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--red); border-radius: 50%; animation: blink 1.4s infinite; }
   @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
@@ -258,7 +258,7 @@
       <div class="nav-logo-mark">
         <svg viewBox="0 0 22 22"><path d="M3 11L11 3L19 11L11 19L3 11Z" fill="white"/></svg>
       </div>
-      <span class="nav-logo-text">VT<span>Net</span></span>
+      <span class="nav-logo-text" style="color:var(--red)">VTNet</span>
     </a>
     <div class="nav-links">
       <a href="#benefits">Lợi ích</a>
@@ -318,25 +318,7 @@
         </div>
       </div>
     </div>
-    <div class="hero-visual reveal" style="transition-delay:0.3s">
-      <div class="hero-badge">⚡ AI-POWERED</div>
-      <div class="hero-card">
-        <div class="hero-card-header">
-          <div class="hero-card-dot" style="background:#ff5f57"></div>
-          <div class="hero-card-dot" style="background:#ffbd2e"></div>
-          <div class="hero-card-dot" style="background:#28c840"></div>
-          <span class="hero-card-title" style="margin-left:8px">Claude AI · Viettel Workspace</span>
-        </div>
-        <div class="ai-chat">
-          <div class="ai-bubble user">Tạo slide báo cáo Q2 cho Ban Lãnh đạo theo brand Viettel</div>
-          <div class="ai-bubble ai">Đã phân tích Brand Guidelines VTNet. Tôi sẽ tạo 10 slides với màu #EE0033, font FS Magistral, bố cục chuyên nghiệp...</div>
-          <div class="ai-bubble user">Thêm biểu đồ tăng trưởng thuê bao 5G vào slide 4</div>
-          <div class="ai-typing">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -522,7 +504,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
         <div class="info-card-label" style="color:var(--red)">Hình thức</div>
-        <div class="info-card-value">Trực tiếp + Hybrid</div>
+        <div class="info-card-value">Trực tiếp + Online</div>
         <div class="info-card-note">Học viên có thể tham gia tại phòng học hoặc online qua Zoom. Link Zoom sẽ được gửi qua email sau khi đăng ký thành công.</div>
       </div>
     </div>
